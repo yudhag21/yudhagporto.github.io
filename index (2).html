@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f4f1e9">
+  <meta name="description" content="A personal portfolio for a UI and product designer. Selected work, experiments, and ways to get in touch.">
+  <title>Your Name — UI / Product Designer</title>
+  <style>
+    /*
+      PERSONAL PORTFOLIO TEMPLATE
+      Quick edits: search for [Your Name], hello@example.com, and the project titles below.
+      This site is intentionally self-contained: no frameworks, fonts, or external images required.
+    */
+    :root {
+      --paper: #f4f1e9;
+      --ink: #1b1d19;
+      --muted: #6b6e65;
+      --line: rgba(27, 29, 25, .18);
+      --lime: #d3f36b;
+      --blue: #5c66f3;
+      --pink: #ff9eae;
+      --orange: #ff7b45;
+      --radius: 18px;
+      --page-pad: clamp(20px, 5vw, 76px);
+      --max-width: 1440px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; text-decoration: none; }
+    button { font: inherit; }
+    ::selection { background: var(--lime); color: var(--ink); }
+
+    .shell { width: min(100%, var(--max-width)); margin-inline: auto; padding-inline: var(--page-pad); }
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      display: flex; align-items: center; justify-content: space-between; gap: 24px;
+      padding: 18px var(--page-pad);
+      background: rgba(244, 241, 233, .88);
+      border-bottom: 1px solid transparent;
+      backdrop-filter: blur(14px);
+      transition: border-color .25s ease, padding .25s ease;
+    }
+    .topbar.scrolled { border-color: var(--line); }
+    .brand { display: inline-flex; align-items: center; gap: 10px; font-size: 13px; font-weight: 800; letter-spacing: -.02em; white-space: nowrap; }
+    .brand-mark { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; color: var(--ink); background: var(--lime); font-size: 15px; transform: rotate(-12deg); }
+    .nav { display: flex; gap: clamp(18px, 3vw, 42px); align-items: center; }
+    .nav a { font-size: 12px; font-weight: 700; color: var(--muted); transition: color .2s ease; }
+    .nav a:hover, .nav a.active { color: var(--ink); }
+    .nav .contact-link { color: var(--ink); border: 1px solid var(--ink); border-radius: 999px; padding: 10px 15px; }
+    .nav .contact-link:hover { background: var(--ink); color: var(--paper); }
+    .menu-button { display: none; border: 1px solid var(--line); border-radius: 999px; background: transparent; color: var(--ink); padding: 9px 12px; cursor: pointer; }
+
+    .hero { min-height: min(790px, calc(100svh - 68px)); display: flex; flex-direction: column; justify-content: space-between; padding-top: clamp(56px, 10vh, 120px); padding-bottom: 28px; }
+    .eyebrow { display: flex; align-items: center; gap: 10px; color: var(--muted); font-size: 11px; font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .status-dot { width: 8px; height: 8px; border-radius: 50%; background: #58a94c; box-shadow: 0 0 0 4px rgba(88,169,76,.12); }
+    .hero-title { margin: clamp(28px, 5vh, 60px) 0 26px; max-width: 1100px; font-size: clamp(60px, 11.4vw, 166px); line-height: .82; letter-spacing: -.095em; font-weight: 800; }
+    .hero-title .outline { color: transparent; -webkit-text-stroke: 1.5px var(--ink); }
+    .hero-title .highlight { display: inline-block; position: relative; z-index: 0; white-space: nowrap; }
+    .hero-title .highlight::after { content: ""; position: absolute; z-index: -1; left: -.025em; right: -.04em; bottom: .03em; height: .34em; background: var(--lime); transform: rotate(-1.8deg); transform-origin: center; }
+    .hero-bottom { display: grid; grid-template-columns: 1.2fr .8fr; gap: 30px; align-items: end; margin-top: clamp(40px, 8vh, 90px); }
+    .hero-intro { max-width: 520px; margin: 0; font-size: clamp(17px, 2vw, 25px); line-height: 1.35; letter-spacing: -.04em; }
+    .hero-intro strong { font-weight: 800; }
+    .hero-aside { justify-self: end; display: flex; flex-direction: column; align-items: flex-start; gap: 12px; max-width: 265px; }
+    .arrow-link { display: inline-flex; align-items: center; gap: 18px; border-bottom: 1px solid var(--ink); padding-bottom: 8px; font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+    .arrow-link span { display: inline-grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--ink); color: var(--paper); transition: transform .25s ease, background .25s ease; }
+    .arrow-link:hover span { transform: rotate(45deg); background: var(--blue); }
+    .small-note { color: var(--muted); font-size: 11px; line-height: 1.5; }
+    .ticker { overflow: hidden; border-block: 1px solid var(--line); background: var(--lime); }
+    .ticker-track { display: flex; width: max-content; gap: 34px; padding: 13px 0; animation: ticker 28s linear infinite; }
+    .ticker span { font-size: 11px; font-weight: 900; letter-spacing: .13em; text-transform: uppercase; white-space: nowrap; }
+    .ticker .star { font-size: 18px; line-height: 10px; }
+
+    .section { padding-top: clamp(84px, 12vw, 155px); }
+    .section-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: 34px; }
+    .section-kicker { margin-bottom: 15px; font-size: 11px; color: var(--muted); font-weight: 800; letter-spacing: .12em; text-transform: uppercase; }
+    .section-title { margin: 0; font-size: clamp(42px, 7vw, 90px); line-height: .9; letter-spacing: -.08em; font-weight: 800; }
+    .section-note { max-width: 270px; color: var(--muted); font-size: 13px; line-height: 1.5; }
+    .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .filter { cursor: pointer; border: 1px solid var(--line); border-radius: 999px; padding: 9px 13px; background: transparent; color: var(--muted); font-size: 11px; font-weight: 800; transition: all .2s ease; }
+    .filter:hover, .filter.active { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+    .work-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(22px, 3vw, 44px) 20px; }
+    .project { min-width: 0; animation: appear .5s both; }
+    .project[hidden] { display: none; }
+    .project-visual { position: relative; display: flex; min-height: 280px; aspect-ratio: 1.26; overflow: hidden; isolation: isolate; border-radius: var(--radius); padding: clamp(18px, 3vw, 38px); }
+    .project-visual::before { content: ""; position: absolute; z-index: -1; inset: 0; background: var(--project-bg, var(--lime)); transition: transform .65s cubic-bezier(.2,.7,.2,1); }
+    .project:hover .project-visual::before { transform: scale(1.035) rotate(-1deg); }
+    .visual-number { position: absolute; top: 18px; left: 20px; font-size: 10px; font-weight: 900; letter-spacing: .1em; }
+    .visual-label { position: absolute; bottom: 18px; left: 20px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: .12em; }
+    .open-project { position: absolute; right: 17px; bottom: 17px; display: grid; place-items: center; width: 42px; height: 42px; border: 0; border-radius: 50%; background: var(--ink); color: white; font-size: 19px; transition: transform .25s ease, background .25s ease; }
+    .project:hover .open-project { transform: rotate(45deg); background: var(--blue); }
+    .project-info { display: flex; align-items: flex-start; justify-content: space-between; gap: 15px; padding-top: 17px; }
+    .project-title { margin: 0 0 6px; font-size: clamp(20px, 2.3vw, 28px); font-weight: 800; letter-spacing: -.06em; }
+    .project-desc { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .project-type { flex-shrink: 0; border: 1px solid var(--line); border-radius: 999px; padding: 7px 9px; color: var(--muted); font-size: 9px; font-weight: 800; text-transform: uppercase; letter-spacing: .06em; }
+
+    /* Project artwork built from CSS so the page works without image assets. */
+    .art-finance { --project-bg: #d9deff; background: #d9deff; }
+    .finance-window { width: min(82%, 430px); margin: auto; background: #fff; border-radius: 13px; padding: 15px; box-shadow: 0 20px 55px rgba(35,39,91,.16); transform: rotate(-4deg); }
+    .fake-top { display: flex; align-items: center; justify-content: space-between; font-size: 9px; font-weight: 800; }
+    .fake-avatar { width: 17px; height: 17px; border-radius: 50%; background: var(--blue); }
+    .fake-balance { margin: 20px 0 13px; font-size: clamp(22px, 3vw, 38px); font-weight: 800; letter-spacing: -.07em; }
+    .fake-caption { color: #74788d; font-size: 8px; }
+    .fake-chart { display: flex; align-items: end; height: 65px; gap: 5px; padding-top: 10px; }
+    .fake-chart i { flex: 1; display: block; border-radius: 4px 4px 0 0; background: var(--blue); opacity: .72; }
+    .fake-chart i:nth-child(1) { height: 24%; } .fake-chart i:nth-child(2) { height: 42%; } .fake-chart i:nth-child(3) { height: 32%; } .fake-chart i:nth-child(4) { height: 65%; } .fake-chart i:nth-child(5) { height: 49%; } .fake-chart i:nth-child(6) { height: 82%; } .fake-chart i:nth-child(7) { height: 100%; }
+    .art-play { --project-bg: #ffb2bf; background: #ffb2bf; }
+    .play-orbit { position: absolute; width: 56%; aspect-ratio: 1; left: 22%; top: 14%; border: 1px solid rgba(27,29,25,.6); border-radius: 50%; animation: orbit 22s linear infinite; }
+    .play-orbit::before, .play-orbit::after { content: ""; position: absolute; border: 1px solid rgba(27,29,25,.45); border-radius: 50%; inset: 12%; }
+    .play-orbit::after { inset: 26%; }
+    .play-sun { position: absolute; width: 34%; aspect-ratio: 1; left: 33%; top: 25%; border-radius: 46% 54% 54% 46%; background: var(--orange); transform: rotate(-18deg); }
+    .play-sun::before { content: "PLAY"; position: absolute; inset: 0; display: grid; place-items: center; font-weight: 900; letter-spacing: -.1em; font-size: clamp(18px, 4vw, 50px); }
+    .play-dot { position: absolute; left: 15%; top: 25%; width: 24px; height: 24px; border-radius: 50%; background: var(--lime); border: 1px solid var(--ink); }
+    .art-ai { --project-bg: #d4f16a; background: #d4f16a; }
+    .ai-phone { position: absolute; left: 16%; top: 11%; width: 33%; height: 78%; border: 5px solid #171914; border-radius: 24px; background: #f7f6f0; padding: 22px 11px 10px; box-shadow: 14px 17px 0 rgba(27,29,25,.12); transform: rotate(-7deg); }
+    .ai-phone::before { content: ""; position: absolute; left: 35%; top: 7px; width: 30%; height: 5px; border-radius: 10px; background: #171914; }
+    .ai-chip { display: inline-block; padding: 4px 6px; background: var(--lime); border-radius: 4px; font-size: 7px; font-weight: 900; }
+    .ai-phone h4 { margin: 11px 0 7px; font-size: clamp(12px, 1.5vw, 17px); line-height: .95; letter-spacing: -.06em; }
+    .ai-lines { display: grid; gap: 4px; margin-top: 12px; }
+    .ai-lines i { display: block; height: 5px; background: #dddcd3; border-radius: 5px; }
+    .ai-lines i:nth-child(2) { width: 80%; } .ai-lines i:nth-child(3) { width: 62%; }
+    .ai-orb { position: absolute; right: 12%; top: 23%; width: 31%; aspect-ratio: 1; border-radius: 50%; background: var(--blue); box-shadow: inset -17px -12px 0 rgba(0,0,0,.14); }
+    .ai-orb::before { content: "✳"; position: absolute; inset: 0; display: grid; place-items: center; color: var(--lime); font-size: clamp(35px, 5vw, 65px); }
+    .ai-sticker { position: absolute; right: 7%; bottom: 18%; background: var(--paper); padding: 12px; font-size: 10px; font-weight: 900; transform: rotate(8deg); box-shadow: 4px 5px 0 var(--ink); }
+    .art-commerce { --project-bg: #23251f; background: #23251f; color: #f4f1e9; }
+    .commerce-card { width: 69%; margin: auto; aspect-ratio: 1.15; display: flex; flex-direction: column; justify-content: space-between; background: #f4f1e9; color: #1b1d19; border-radius: 8px; padding: 17px; transform: rotate(5deg); box-shadow: -14px 16px 0 rgba(211,243,107,.9); }
+    .commerce-top { display: flex; justify-content: space-between; font-size: 8px; font-weight: 900; text-transform: uppercase; }
+    .commerce-shape { align-self: center; position: relative; width: 44%; aspect-ratio: .8; background: var(--orange); border-radius: 45% 45% 24% 24%; transform: rotate(-10deg); }
+    .commerce-shape::before { content: ""; position: absolute; width: 48%; height: 22%; left: 26%; top: -15%; border: 7px solid var(--orange); border-bottom: 0; border-radius: 50% 50% 0 0; }
+    .commerce-bottom { display: flex; justify-content: space-between; align-items: end; font-size: 8px; font-weight: 800; }
+
+    .about { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(34px, 8vw, 120px); align-items: start; padding-bottom: clamp(84px, 12vw, 150px); }
+    .about-stamp { position: sticky; top: 110px; display: flex; flex-direction: column; justify-content: space-between; min-height: 300px; padding: 23px; background: var(--blue); color: white; border-radius: var(--radius); overflow: hidden; }
+    .stamp-ring { align-self: center; display: grid; place-items: center; width: clamp(120px, 17vw, 210px); aspect-ratio: 1; border: 1px solid rgba(255,255,255,.7); border-radius: 50%; font-size: 45px; animation: orbit 30s linear infinite; }
+    .stamp-ring::after { content: "✳"; }
+    .stamp-foot { display: flex; justify-content: space-between; gap: 10px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+    .about-copy { padding-top: 5px; }
+    .about-lead { margin: 0 0 24px; font-size: clamp(27px, 4.2vw, 55px); line-height: 1.04; letter-spacing: -.07em; font-weight: 700; }
+    .about-copy p:not(.about-lead) { max-width: 620px; color: var(--muted); font-size: 15px; line-height: 1.75; }
+    .skill-list { display: flex; flex-wrap: wrap; gap: 8px; margin: 28px 0 32px; }
+    .skill-list span { border: 1px solid var(--line); border-radius: 999px; padding: 10px 13px; font-size: 11px; font-weight: 800; }
+
+    .contact { padding: clamp(70px, 10vw, 130px) 0 28px; background: var(--ink); color: var(--paper); }
+    .contact-top { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid rgba(244,241,233,.22); }
+    .contact-top .eyebrow { color: #b2b4ab; }
+    .contact-title { margin: 45px 0 35px; max-width: 1000px; font-size: clamp(52px, 10vw, 138px); font-weight: 800; letter-spacing: -.09em; line-height: .83; }
+    .contact-title span { color: var(--lime); }
+    .contact-bottom { display: flex; align-items: end; justify-content: space-between; gap: 25px; padding: 24px 0 55px; }
+    .email-link { display: inline-flex; align-items: center; gap: 15px; padding-bottom: 8px; border-bottom: 1px solid rgba(244,241,233,.7); font-size: clamp(17px, 2.4vw, 25px); letter-spacing: -.04em; }
+    .email-link span { color: var(--lime); }
+    .socials { display: flex; gap: 18px; flex-wrap: wrap; }
+    .socials a { color: #b2b4ab; font-size: 11px; font-weight: 800; }
+    .socials a:hover { color: var(--lime); }
+    .footer { display: flex; justify-content: space-between; gap: 20px; padding-top: 17px; border-top: 1px solid rgba(244,241,233,.22); color: #a4a69d; font-size: 10px; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    @keyframes ticker { to { transform: translateX(-50%); } }
+    @keyframes orbit { to { transform: rotate(360deg); } }
+    @keyframes appear { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+    @media (min-width: 1500px) { .topbar { padding-inline: max(var(--page-pad), calc((100vw - var(--max-width)) / 2 + var(--page-pad))); } }
+    @media (max-width: 760px) {
+      .topbar { padding-block: 14px; }
+      .menu-button { display: inline-flex; align-items: center; gap: 8px; }
+      .nav { display: none; position: absolute; left: 0; right: 0; top: 100%; flex-direction: column; align-items: stretch; padding: 13px var(--page-pad) 22px; background: var(--paper); border-bottom: 1px solid var(--line); gap: 0; }
+      .nav.open { display: flex; }
+      .nav a { padding: 15px 0; border-bottom: 1px solid var(--line); }
+      .nav .contact-link { align-self: flex-start; margin-top: 12px; padding: 10px 15px; border: 1px solid var(--ink); }
+      .hero { min-height: auto; padding-top: 75px; padding-bottom: 35px; }
+      .hero-title { font-size: clamp(57px, 14vw, 100px); }
+      .hero-bottom { grid-template-columns: 1fr; gap: 28px; }
+      .hero-aside { justify-self: start; }
+      .section-head { align-items: start; flex-direction: column; }
+      .section-note { max-width: 420px; }
+      .work-grid { grid-template-columns: 1fr; gap: 32px; }
+      .project-visual { min-height: 260px; }
+      .about { grid-template-columns: 1fr; }
+      .about-stamp { position: relative; top: auto; min-height: 230px; }
+      .stamp-ring { width: 140px; }
+      .contact-bottom { align-items: start; flex-direction: column; }
+    }
+    @media (max-width: 420px) {
+      .hero-title { font-size: 56px; }
+      .project-info { flex-direction: column; }
+      .project-type { align-self: flex-start; }
+      .project-visual { min-height: 235px; }
+      .footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="topbar" id="topbar">
+    <a class="brand" href="#home" aria-label="Go to home">
+      <span class="brand-mark">✳</span>
+      <span>YOUR NAME / DESIGN</span>
+    </a>
+    <button class="menu-button" id="menuButton" type="button" aria-expanded="false" aria-controls="mainNav">Menu <span aria-hidden="true">☰</span></button>
+    <nav class="nav" id="mainNav" aria-label="Main navigation">
+      <a href="#home" class="active">Home</a>
+      <a href="#work">Work <span aria-hidden="true">↘</span></a>
+      <a href="#about">About</a>
+      <a href="#contact" class="contact-link">Let’s talk ↗</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero shell" id="home">
+      <div>
+        <div class="eyebrow"><span class="status-dot"></span> UI / PRODUCT DESIGNER · AVAILABLE FOR SELECT PROJECTS</div>
+        <h1 class="hero-title">I MAKE<br> DIGITAL THINGS<br><span class="outline">FEEL</span> <span class="highlight">HUMAN.</span></h1>
+      </div>
+      <div class="hero-bottom">
+        <p class="hero-intro">Hi, I’m <strong>[Your Name]</strong> — a designer turning complex ideas into clear, useful, and memorable digital experiences.</p>
+        <div class="hero-aside">
+          <a class="arrow-link" href="#work">Explore selected work <span>↘</span></a>
+          <div class="small-note">Independent designer focused on thoughtful interfaces, product strategy, and playful details.</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="ticker" aria-label="Design approach">
+      <div class="ticker-track" aria-hidden="true">
+        <span>Curiosity first</span><span class="star">✳</span><span>Useful by design</span><span class="star">✳</span><span>Small details matter</span><span class="star">✳</span><span>Make it feel human</span><span class="star">✳</span>
+        <span>Curiosity first</span><span class="star">✳</span><span>Useful by design</span><span class="star">✳</span><span>Small details matter</span><span class="star">✳</span><span>Make it feel human</span><span class="star">✳</span>
+      </div>
+    </div>
+
+    <section class="section shell" id="work">
+      <div class="section-head reveal">
+        <div>
+          <div class="section-kicker">01 / Selected projects</div>
+          <h2 class="section-title">A little bit<br>of my work<span style="color:var(--blue)">.</span></h2>
+        </div>
+        <p class="section-note">A few sample case-study cards to get started. Replace the titles, descriptions, and visuals with your own projects.</p>
+      </div>
+      <div class="filters reveal" role="group" aria-label="Filter projects">
+        <button class="filter active" type="button" data-filter="all" aria-pressed="true">All projects</button>
+        <button class="filter" type="button" data-filter="product" aria-pressed="false">Product design</button>
+        <button class="filter" type="button" data-filter="concept" aria-pressed="false">Concepts</button>
+        <button class="filter" type="button" data-filter="visual" aria-pressed="false">Visual explorations</button>
+      </div>
+
+      <div class="work-grid" id="workGrid">
+        <article class="project reveal" data-category="product">
+          <a class="project-visual art-finance" href="#contact" aria-label="Discuss the digital finance concept">
+            <span class="visual-number">PROJECT 01</span>
+            <div class="finance-window" aria-hidden="true">
+              <div class="fake-top"><span>yourbank</span><span class="fake-avatar"></span></div>
+              <div class="fake-caption" style="margin-top:19px">TOTAL BALANCE</div>
+              <div class="fake-balance">$24,680.50</div>
+              <div class="fake-caption">Spending overview ↗</div>
+              <div class="fake-chart"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+            </div>
+            <span class="visual-label">Digital finance / UI concept</span><span class="open-project" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-info">
+            <div><h3 class="project-title">Money, made clearer.</h3><p class="project-desc">A calmer way to understand everyday finances.</p></div>
+            <span class="project-type">Product design</span>
+          </div>
+        </article>
+
+        <article class="project reveal" data-category="concept">
+          <a class="project-visual art-play" href="#contact" aria-label="Discuss the family discovery concept">
+            <span class="visual-number">PROJECT 02</span>
+            <div class="play-orbit" aria-hidden="true"></div><div class="play-sun" aria-hidden="true"></div><div class="play-dot" aria-hidden="true"></div>
+            <span class="visual-label">Family discovery / Concept</span><span class="open-project" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-info">
+            <div><h3 class="project-title">Room to explore.</h3><p class="project-desc">Helping families find places to play, learn, and grow.</p></div>
+            <span class="project-type">Concept</span>
+          </div>
+        </article>
+
+        <article class="project reveal" data-category="visual">
+          <a class="project-visual art-ai" href="#contact" aria-label="Discuss the AI shopping advisor concept">
+            <span class="visual-number">PROJECT 03</span>
+            <div class="ai-phone" aria-hidden="true"><span class="ai-chip">SMART PICK</span><h4>Find your<br>kind of tech.</h4><div class="ai-lines"><i></i><i></i><i></i></div><div style="margin-top:20px;height:42px;background:#d9deff;border-radius:7px"></div><div class="ai-lines"><i></i><i></i></div></div>
+            <div class="ai-orb" aria-hidden="true"></div><div class="ai-sticker" aria-hidden="true">MADE FOR YOU ✳</div>
+            <span class="visual-label">AI retail / Visual exploration</span><span class="open-project" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-info">
+            <div><h3 class="project-title">A smarter way to choose.</h3><p class="project-desc">Making product discovery feel personal, not overwhelming.</p></div>
+            <span class="project-type">Visual exploration</span>
+          </div>
+        </article>
+
+        <article class="project reveal" data-category="product">
+          <a class="project-visual art-commerce" href="#contact" aria-label="Discuss the commerce experience concept">
+            <span class="visual-number">PROJECT 04</span>
+            <div class="commerce-card" aria-hidden="true"><div class="commerce-top"><span>Good things</span><span>001—04</span></div><div class="commerce-shape"></div><div class="commerce-bottom"><span>Everyday object<br>collection</span><span>Explore ↗</span></div></div>
+            <span class="visual-label">Commerce / Interface study</span><span class="open-project" aria-hidden="true">↗</span>
+          </a>
+          <div class="project-info">
+            <div><h3 class="project-title">Objects with intention.</h3><p class="project-desc">A minimal shopping experience with character.</p></div>
+            <span class="project-type">Product design</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell about" id="about">
+      <div class="about-stamp reveal" aria-hidden="true">
+        <div class="eyebrow" style="color:#fff">A little about me</div>
+        <div class="stamp-ring"></div>
+        <div class="stamp-foot"><span>Curious by nature</span><span>✳ 001</span></div>
+      </div>
+      <div class="about-copy reveal">
+        <div class="section-kicker">02 / About</div>
+        <p class="about-lead">Good design isn’t just how it looks. It’s how naturally it fits into someone’s life.</p>
+        <p>I’m a UI and product designer interested in the space between people, technology, and everyday decisions. I like making complicated things easier to understand — without removing the personality that makes them special.</p>
+        <p>This section is your space to share how you think, what you care about, and the kind of teams or projects you enjoy working with. Keep it personal and specific to you.</p>
+        <div class="skill-list" aria-label="Areas of focus"><span>UI design</span><span>Product thinking</span><span>Prototyping</span><span>Design systems</span><span>Creative direction</span><span>AI experiences</span></div>
+        <a class="arrow-link" href="#contact">More about working together <span>↘</span></a>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="shell">
+        <div class="contact-top"><div class="eyebrow">03 / Get in touch</div><div class="eyebrow">Open to good conversations ↗</div></div>
+        <h2 class="contact-title">HAVE A GOOD<br>IDEA? <span>LET’S TALK.</span></h2>
+        <div class="contact-bottom">
+          <a class="email-link" href="mailto:hello@example.com">hello@example.com <span>↗</span></a>
+          <div class="socials"><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer">LINKEDIN ↗</a><a href="https://www.behance.net/" target="_blank" rel="noreferrer">BEHANCE ↗</a><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">INSTAGRAM ↗</a></div>
+        </div>
+        <footer class="footer"><span>© <span id="year"></span> [Your Name]. Made with curiosity.</span><a href="#home">Back to top ↑</a></footer>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Mobile navigation
+    const menuButton = document.querySelector('#menuButton');
+    const mainNav = document.querySelector('#mainNav');
+    menuButton.addEventListener('click', () => {
+      const isOpen = mainNav.classList.toggle('open');
+      menuButton.setAttribute('aria-expanded', String(isOpen));
+      menuButton.innerHTML = isOpen ? 'Close <span aria-hidden="true">×</span>' : 'Menu <span aria-hidden="true">☰</span>';
+    });
+    mainNav.querySelectorAll('a').forEach(link => link.addEventListener('click', () => {
+      mainNav.classList.remove('open');
+      menuButton.setAttribute('aria-expanded', 'false');
+      menuButton.innerHTML = 'Menu <span aria-hidden="true">☰</span>';
+    }));
+
+    // Project category filters
+    const filterButtons = document.querySelectorAll('.filter');
+    const projects = document.querySelectorAll('.project');
+    filterButtons.forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      filterButtons.forEach(item => {
+        const active = item === button;
+        item.classList.toggle('active', active);
+        item.setAttribute('aria-pressed', String(active));
+      });
+      projects.forEach(project => {
+        project.hidden = filter !== 'all' && project.dataset.category !== filter;
+      });
+    }));
+
+    // Reveal elements as they enter the viewport, with a graceful fallback.
+    const revealItems = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach(item => observer.observe(item));
+    } else {
+      revealItems.forEach(item => item.classList.add('visible'));
+    }
+
+    // Compact sticky navigation treatment and current year.
+    const topbar = document.querySelector('#topbar');
+    const updateTopbar = () => topbar.classList.toggle('scrolled', window.scrollY > 12);
+    window.addEventListener('scroll', updateTopbar, { passive: true });
+    updateTopbar();
+    document.querySelector('#year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
